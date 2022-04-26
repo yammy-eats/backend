@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.32">
     <root id="1">
       <DateStyle>ymd</DateStyle>
-      <IntrospectionStateNumber>746</IntrospectionStateNumber>
+      <IntrospectionStateNumber>762</IntrospectionStateNumber>
       <ServerVersion>14.2</ServerVersion>
       <StartupTime>1650873224</StartupTime>
       <TimeZones>true ACDT
@@ -816,9 +816,10 @@ false Zulu
 13388||10|C|G
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
-      <IntrospectionStateNumber>747</IntrospectionStateNumber>
+      <IntrospectionStateNumber>763</IntrospectionStateNumber>
       <ObjectId>16394</ObjectId>
       <Relations>sequence|table|16400|16401|1
+sequence|table|16410|16411|1
 </Relations>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -9229,7 +9230,7 @@ false Zulu
     <schema id="508" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>747</IntrospectionStateNumber>
+      <IntrospectionStateNumber>763</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -9240,19 +9241,31 @@ false Zulu
       <StateNumber>738</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="510" parent="508" name="restaurant">
+    <sequence id="510" parent="508" name="user_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16410</ObjectId>
+      <StateNumber>760</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="511" parent="508" name="restaurant">
       <ObjectId>16401</ObjectId>
       <StateNumber>738</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="511" parent="508" name="typeorm_metadata">
+    <table id="512" parent="508" name="typeorm_metadata">
       <ObjectId>16395</ObjectId>
       <StateNumber>736</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="512" parent="510" name="id">
+    <table id="513" parent="508" name="user">
+      <ObjectId>16411</ObjectId>
+      <StateNumber>760</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="514" parent="511" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;restaurant_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9260,35 +9273,36 @@ false Zulu
       <StateNumber>738</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="513" parent="510" name="name">
+    <column id="515" parent="511" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="514" parent="510" name="isVegan">
+    <column id="516" parent="511" name="isVegan">
       <DataType>boolean|0s</DataType>
+      <DefaultExpression>true</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>753</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="515" parent="510" name="address">
+    <column id="517" parent="511" name="address">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="516" parent="510" name="ownerName">
+    <column id="518" parent="511" name="ownersName">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>750</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="517" parent="510" name="PK_649e250d8b8165cb406d99aa30f">
+    <index id="519" parent="511" name="PK_649e250d8b8165cb406d99aa30f">
       <ClassIds>1978</ClassIds>
       <ColNames>id</ColNames>
       <CollationIds>0</CollationIds>
@@ -9298,49 +9312,111 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="518" parent="510" name="PK_649e250d8b8165cb406d99aa30f">
+    <key id="520" parent="511" name="PK_649e250d8b8165cb406d99aa30f">
       <ColNames>id</ColNames>
       <ObjectId>16408</ObjectId>
       <Primary>1</Primary>
       <StateNumber>738</StateNumber>
       <UnderlyingIndexId>16407</UnderlyingIndexId>
     </key>
-    <column id="519" parent="511" name="type">
+    <column id="521" parent="512" name="type">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="520" parent="511" name="database">
+    <column id="522" parent="512" name="database">
       <DataType>varchar|0s</DataType>
       <Position>2</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="521" parent="511" name="schema">
+    <column id="523" parent="512" name="schema">
       <DataType>varchar|0s</DataType>
       <Position>3</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="522" parent="511" name="table">
+    <column id="524" parent="512" name="table">
       <DataType>varchar|0s</DataType>
       <Position>4</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="523" parent="511" name="name">
+    <column id="525" parent="512" name="name">
       <DataType>varchar|0s</DataType>
       <Position>5</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="524" parent="511" name="value">
+    <column id="526" parent="512" name="value">
       <DataType>text|0s</DataType>
       <Position>6</Position>
       <StateNumber>736</StateNumber>
       <TypeId>25</TypeId>
     </column>
+    <column id="527" parent="513" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="528" parent="513" name="createdAt">
+      <DataType>timestamp|0s</DataType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="529" parent="513" name="updatedAt">
+      <DataType>timestamp|0s</DataType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="530" parent="513" name="email">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="531" parent="513" name="password">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="532" parent="513" name="role">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>760</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="533" parent="513" name="PK_cace4a159ff9f2512dd42373760">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16419</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>760</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="534" parent="513" name="PK_cace4a159ff9f2512dd42373760">
+      <ColNames>id</ColNames>
+      <ObjectId>16420</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>760</StateNumber>
+      <UnderlyingIndexId>16419</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>
