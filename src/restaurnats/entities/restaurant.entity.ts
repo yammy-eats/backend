@@ -19,5 +19,5 @@ export class Restaurant {
   address: string;
   @Field(() => String)
   @Column() // TypeORM
-  ownerName: string;
+  ownersName: string;
 }
