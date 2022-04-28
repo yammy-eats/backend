@@ -12,7 +12,6 @@ import { JwtService } from '../jwt/jwt.service';
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
-    private readonly config: ConfigService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -54,7 +53,7 @@ export class UsersService {
           error: '비밀번호가 잘못되었습니다.',
         };
       }
-      const token = jwt.sign({ id: user.id }, this.config.get('SECRET_KEY'));
+      const token = this.jwtService.sign(user.id);
       return {
         ok: true,
         token,
