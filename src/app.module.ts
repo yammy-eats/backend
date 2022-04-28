@@ -1,19 +1,17 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { RestaurnatsModule } from './restaurnats/restaurnats.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-import { Restaurant } from "./restaurnats/entities/restaurant.entity";
 import { UsersModule } from './users/users.module';
 import { CommonModule } from './common/common.module';
-import { User } from "./users/entities/user.entity";
+import { User } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // 글로벌 모듈은 import 필요 X
       envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
       ignoreEnvFile: process.env.NODE_ENV === 'prod',
       validationSchema: Joi.object({
@@ -42,7 +40,7 @@ import { JwtModule } from './jwt/jwt.module';
     }),
     UsersModule,
     CommonModule,
-    JwtModule,
+    JwtModule.forRoot(),
   ],
   controllers: [],
   providers: [],

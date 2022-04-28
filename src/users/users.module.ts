@@ -6,7 +6,7 @@ import { UsersResolver } from './users.resolver';
 import { ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), ConfigService],
+  imports: [TypeOrmModule.forFeature([User])],
   providers: [UsersResolver, UsersService],
 })
 export class UsersModule {}
