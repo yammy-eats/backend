@@ -8,11 +8,14 @@ import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '../jwt/jwt.service';
 import { EditProfileInput } from './dtos/edit-account.dto';
+import { Verification } from './entities/verification.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
+    @InjectRepository(Verification)
+    private readonly verification: Repository<Verification>,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -28,7 +31,14 @@ export class UsersService {
       if (exists) {
         return { ok: false, error: '계정이 존재합니다.' };
       }
-      await this.users.save(this.users.create({ email, password, role }));
+      const user = await this.users.save(
+        this.users.create({ email, password, role }),
+      );
+      await this.verification.save(
+        this.verification.create({
+          user,
+        }),
+      );
       return { ok: true };
     } catch (e) {
       return { ok: false, error: '계정을 생성할 수 없습니다.' };
@@ -78,6 +88,8 @@ export class UsersService {
     const user = await this.users.findOneBy({ id: userId });
     if (email) {
       user.email = email;
+      user.verified = false;
+      await this.verification.save(this.verification.create({ user }));
     }
     if (password) {
       user.password = password;

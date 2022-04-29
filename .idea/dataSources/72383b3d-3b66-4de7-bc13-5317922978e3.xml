@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.32">
     <root id="1">
       <DateStyle>ymd</DateStyle>
-      <IntrospectionStateNumber>762</IntrospectionStateNumber>
+      <IntrospectionStateNumber>786</IntrospectionStateNumber>
       <ServerVersion>14.2</ServerVersion>
-      <StartupTime>1650873224</StartupTime>
+      <StartupTime>1651153770</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -801,7 +801,6 @@ false Zulu
 13388||10|C|G
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
-      <IntrospectionStateNumber>741</IntrospectionStateNumber>
       <ObjectId>13754</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -816,9 +815,10 @@ false Zulu
 13388||10|C|G
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
-      <IntrospectionStateNumber>763</IntrospectionStateNumber>
+      <IntrospectionStateNumber>787</IntrospectionStateNumber>
       <ObjectId>16394</ObjectId>
-      <Relations>sequence|table|16400|16401|1
+      <Relations>sequence|table|24576|24577|1
+sequence|table|16400|16401|1
 sequence|table|16410|16411|1
 </Relations>
       <OwnerName>postgres</OwnerName>
@@ -4248,7 +4248,6 @@ sequence|table|16410|16411|1
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>741</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -9230,42 +9229,64 @@ sequence|table|16410|16411|1
     <schema id="508" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>763</IntrospectionStateNumber>
+      <IntrospectionStateNumber>787</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <sequence id="509" parent="508" name="restaurant_id_seq">
+    <object-type id="509" parent="508" name="user_role_enum">
+      <Labels>0
+1
+2</Labels>
+      <ObjectId>16422</ObjectId>
+      <StateNumber>764</StateNumber>
+      <SubCategory>enum</SubCategory>
+      <SubKind>enum</SubKind>
+      <OwnerName>postgres</OwnerName>
+    </object-type>
+    <sequence id="510" parent="508" name="restaurant_id_seq">
       <DataType>integer|0s</DataType>
       <ObjectId>16400</ObjectId>
       <StateNumber>738</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="510" parent="508" name="user_id_seq">
+    <sequence id="511" parent="508" name="user_id_seq">
       <DataType>integer|0s</DataType>
       <ObjectId>16410</ObjectId>
       <StateNumber>760</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="511" parent="508" name="restaurant">
+    <sequence id="512" parent="508" name="verification_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>24576</ObjectId>
+      <StateNumber>784</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="513" parent="508" name="restaurant">
       <ObjectId>16401</ObjectId>
       <StateNumber>738</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="512" parent="508" name="typeorm_metadata">
+    <table id="514" parent="508" name="typeorm_metadata">
       <ObjectId>16395</ObjectId>
       <StateNumber>736</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="513" parent="508" name="user">
+    <table id="515" parent="508" name="user">
       <ObjectId>16411</ObjectId>
-      <StateNumber>760</StateNumber>
+      <StateNumber>784</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="514" parent="511" name="id">
+    <table id="516" parent="508" name="verification">
+      <ObjectId>24577</ObjectId>
+      <StateNumber>784</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="517" parent="513" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;restaurant_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9273,14 +9294,14 @@ sequence|table|16410|16411|1
       <StateNumber>738</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="515" parent="511" name="name">
+    <column id="518" parent="513" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="516" parent="511" name="isVegan">
+    <column id="519" parent="513" name="isVegan">
       <DataType>boolean|0s</DataType>
       <DefaultExpression>true</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9288,21 +9309,21 @@ sequence|table|16410|16411|1
       <StateNumber>753</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="517" parent="511" name="address">
+    <column id="520" parent="513" name="address">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="518" parent="511" name="ownersName">
+    <column id="521" parent="513" name="ownersName">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>750</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="519" parent="511" name="PK_649e250d8b8165cb406d99aa30f">
+    <index id="522" parent="513" name="PK_649e250d8b8165cb406d99aa30f">
       <ClassIds>1978</ClassIds>
       <ColNames>id</ColNames>
       <CollationIds>0</CollationIds>
@@ -9312,51 +9333,51 @@ sequence|table|16410|16411|1
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="520" parent="511" name="PK_649e250d8b8165cb406d99aa30f">
+    <key id="523" parent="513" name="PK_649e250d8b8165cb406d99aa30f">
       <ColNames>id</ColNames>
       <ObjectId>16408</ObjectId>
       <Primary>1</Primary>
       <StateNumber>738</StateNumber>
       <UnderlyingIndexId>16407</UnderlyingIndexId>
     </key>
-    <column id="521" parent="512" name="type">
+    <column id="524" parent="514" name="type">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="522" parent="512" name="database">
+    <column id="525" parent="514" name="database">
       <DataType>varchar|0s</DataType>
       <Position>2</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="523" parent="512" name="schema">
+    <column id="526" parent="514" name="schema">
       <DataType>varchar|0s</DataType>
       <Position>3</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="524" parent="512" name="table">
+    <column id="527" parent="514" name="table">
       <DataType>varchar|0s</DataType>
       <Position>4</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="525" parent="512" name="name">
+    <column id="528" parent="514" name="name">
       <DataType>varchar|0s</DataType>
       <Position>5</Position>
       <StateNumber>736</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="526" parent="512" name="value">
+    <column id="529" parent="514" name="value">
       <DataType>text|0s</DataType>
       <Position>6</Position>
       <StateNumber>736</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="527" parent="513" name="id">
+    <column id="530" parent="515" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9364,7 +9385,7 @@ sequence|table|16410|16411|1
       <StateNumber>760</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="528" parent="513" name="createdAt">
+    <column id="531" parent="515" name="createdAt">
       <DataType>timestamp|0s</DataType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9372,7 +9393,7 @@ sequence|table|16410|16411|1
       <StateNumber>760</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="529" parent="513" name="updatedAt">
+    <column id="532" parent="515" name="updatedAt">
       <DataType>timestamp|0s</DataType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -9380,28 +9401,28 @@ sequence|table|16410|16411|1
       <StateNumber>760</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="530" parent="513" name="email">
+    <column id="533" parent="515" name="email">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>760</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="531" parent="513" name="password">
+    <column id="534" parent="515" name="password">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>760</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="532" parent="513" name="role">
-      <DataType>varchar|0s</DataType>
+    <column id="535" parent="515" name="role">
+      <DataType>user_role_enum|0s</DataType>
       <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StateNumber>760</StateNumber>
-      <TypeId>1043</TypeId>
+      <Position>7</Position>
+      <StateNumber>764</StateNumber>
+      <TypeId>16422</TypeId>
     </column>
-    <index id="533" parent="513" name="PK_cace4a159ff9f2512dd42373760">
+    <index id="536" parent="515" name="PK_cace4a159ff9f2512dd42373760">
       <ClassIds>1978</ClassIds>
       <ColNames>id</ColNames>
       <CollationIds>0</CollationIds>
@@ -9411,12 +9432,92 @@ sequence|table|16410|16411|1
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="534" parent="513" name="PK_cace4a159ff9f2512dd42373760">
+    <key id="537" parent="515" name="PK_cace4a159ff9f2512dd42373760">
       <ColNames>id</ColNames>
       <ObjectId>16420</ObjectId>
       <Primary>1</Primary>
       <StateNumber>760</StateNumber>
       <UnderlyingIndexId>16419</UnderlyingIndexId>
+    </key>
+    <column id="538" parent="516" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;verification_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>784</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="539" parent="516" name="createdAt">
+      <DataType>timestamp|0s</DataType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>784</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="540" parent="516" name="updatedAt">
+      <DataType>timestamp|0s</DataType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>784</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="541" parent="516" name="code">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>784</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="542" parent="516" name="userId">
+      <DataType>integer|0s</DataType>
+      <Position>5</Position>
+      <StateNumber>784</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="543" parent="516" name="FK_8300048608d8721aea27747b07a">
+      <ColNames>userId</ColNames>
+      <ObjectId>24589</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>PK_cace4a159ff9f2512dd42373760</RefKeyName>
+      <StateNumber>784</StateNumber>
+      <RefTableId>16411</RefTableId>
+      <RefTableName>user</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="544" parent="516" name="PK_f7e3a90ca384e71d6e2e93bb340">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>24585</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>784</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="545" parent="516" name="REL_8300048608d8721aea27747b07">
+      <ClassIds>1978</ClassIds>
+      <ColNames>userId</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>24587</ObjectId>
+      <StateNumber>784</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="546" parent="516" name="PK_f7e3a90ca384e71d6e2e93bb340">
+      <ColNames>id</ColNames>
+      <ObjectId>24586</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>784</StateNumber>
+      <UnderlyingIndexId>24585</UnderlyingIndexId>
+    </key>
+    <key id="547" parent="516" name="REL_8300048608d8721aea27747b07">
+      <ColNames>userId</ColNames>
+      <ObjectId>24588</ObjectId>
+      <StateNumber>784</StateNumber>
+      <UnderlyingIndexId>24587</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

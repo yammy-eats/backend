@@ -1,6 +1,5 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from './entities/user.entity';
-import { UsersService } from './user.service';
 import {
   CreateAccountInput,
   CreateAccountOutput,
@@ -11,6 +10,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { AuthUser } from '../auth/auth-user.decorator';
 import { UserProfileInput, UserProfileOutput } from './dtos/user-profile.dto';
 import { EditProfileInput, EditProfileOutput } from './dtos/edit-account.dto';
+import { UsersService } from './user.service';
 
 @Resolver(() => User)
 export class UsersResolver {
