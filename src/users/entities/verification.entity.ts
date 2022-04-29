@@ -1,5 +1,12 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { BeforeInsert, Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  Relation,
+} from 'typeorm';
 import { CoreEntity } from '../../common/entities/core.entity';
 import { User } from './user.entity';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,7 +21,7 @@ export class Verification extends CoreEntity {
 
   @OneToOne((type) => User)
   @JoinColumn()
-  user: User;
+  user: Relation<User>;
 
   @BeforeInsert()
   createCode(): void {
