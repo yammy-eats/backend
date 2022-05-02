@@ -7,8 +7,10 @@ import { LoginInput } from './dtos/login-account.dto';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '../jwt/jwt.service';
-import { EditProfileInput } from './dtos/edit-account.dto';
+import { EditProfileInput, EditProfileOutput } from './dtos/edit-account.dto';
 import { Verification } from './entities/verification.entity';
+import { VerifyEmailOutput } from './dtos/verify-email.dto';
+import { UserProfileOutput } from './dtos/user-profile.dto';
 
 @Injectable()
 export class UsersService {
@@ -82,14 +84,24 @@ export class UsersService {
     }
   }
 
-  async findById(id: number): Promise<User> {
-    return this.users.findOneBy({ id });
+  async findById(id: number): Promise<UserProfileOutput> {
+    try {
+      const user = await this.users.findOneBy({ id });
+      if (user) {
+        return {
+          ok: true,
+          user: user,
+        };
+      }
+    } catch (error) {
+      return { ok: false, error: 'User Not Found' };
+    }
   }
 
   async editProfile(
     userId: number,
     { email, password }: EditProfileInput,
-  ): Promise<User> {
+  ): Promise<EditProfileOutput> {
     const user = await this.users.findOneBy({ id: userId });
     if (email) {
       user.email = email;
@@ -99,10 +111,13 @@ export class UsersService {
     if (password) {
       user.password = password;
     }
-    return this.users.save(user);
+    await this.users.save(user);
+    return {
+      ok: true,
+    };
   }
 
-  async verifyEmail(code: string): Promise<boolean> {
+  async verifyEmail(code: string): Promise<VerifyEmailOutput> {
     try {
       const verification = await this.verification.findOne({
         where: {
@@ -113,11 +128,11 @@ export class UsersService {
       if (verification) {
         verification.user.verified = true;
         await this.users.save(verification.user);
-        return true;
+        return { ok: true };
       }
-      return false;
-    } catch (e) {
-      return false;
+      return { ok: false, error: 'Verification not found.' };
+    } catch (error) {
+      return { ok: false, error };
     }
   }
 }
