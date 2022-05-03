@@ -28,9 +28,11 @@ export class MailService {
     });
   }
 
-  async signup(to: string) {
+  async signup(to: string, code: string) {
     await this._send([to], '회원가입 완료', 'signup.ejs', {
       email: to,
+      key: 'code',
+      value: code,
     });
   }
 }

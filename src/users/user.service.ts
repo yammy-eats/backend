@@ -18,7 +18,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
     @InjectRepository(Verification)
-    private readonly verification: Repository<Verification>,
+    private readonly verifications: Repository<Verification>,
     private readonly jwtService: JwtService,
     private readonly mailService: MailService,
   ) {}
@@ -38,14 +38,16 @@ export class UsersService {
       const user = await this.users.save(
         this.users.create({ email, password, role }),
       );
-      await this.verification.save(
-        this.verification.create({
+      const verification = await this.verifications.save(
+        this.verifications.create({
           user,
         }),
       );
-      await this.mailService.signup('hayanyoo.dev@gmail.com').catch((e) => {
-        console.log(e);
-      });
+      this.mailService
+        .signup('hayanyoo.dev@gmail.com', verification.code)
+        .catch((e) => {
+          console.log(e);
+        });
       return { ok: true };
     } catch (e) {
       return { ok: false, error: '계정을 생성할 수 없습니다.' };
@@ -111,7 +113,15 @@ export class UsersService {
     if (email) {
       user.email = email;
       user.verified = false;
-      await this.verification.save(this.verification.create({ user }));
+      const verification = await this.verifications.save(
+        this.verifications.create({ user }),
+      );
+
+      this.mailService
+        .signup('hayanyoo.dev@gmail.com', verification.code)
+        .catch((e) => {
+          console.log(e);
+        });
     }
     if (password) {
       user.password = password;
@@ -124,7 +134,7 @@ export class UsersService {
 
   async verifyEmail(code: string): Promise<VerifyEmailOutput> {
     try {
-      const verification = await this.verification.findOne({
+      const verification = await this.verifications.findOne({
         where: {
           code,
         },
@@ -133,7 +143,7 @@ export class UsersService {
       if (verification) {
         verification.user.verified = true;
         await this.users.save(verification.user);
-        await this.verification.delete(verification.id);
+        await this.verifications.delete(verification.id);
         return { ok: true };
       }
       return { ok: false, error: 'Verification not found.' };
