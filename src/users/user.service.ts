@@ -11,6 +11,7 @@ import { EditProfileInput, EditProfileOutput } from './dtos/edit-account.dto';
 import { Verification } from './entities/verification.entity';
 import { VerifyEmailOutput } from './dtos/verify-email.dto';
 import { UserProfileOutput } from './dtos/user-profile.dto';
+import { MailService } from '../mailer/mail.service';
 
 @Injectable()
 export class UsersService {
@@ -19,6 +20,7 @@ export class UsersService {
     @InjectRepository(Verification)
     private readonly verification: Repository<Verification>,
     private readonly jwtService: JwtService,
+    private readonly mailService: MailService,
   ) {}
 
   async createAccount({
@@ -41,6 +43,9 @@ export class UsersService {
           user,
         }),
       );
+      await this.mailService.signup('hayanyoo.dev@gmail.com').catch((e) => {
+        console.log(e);
+      });
       return { ok: true };
     } catch (e) {
       return { ok: false, error: '계정을 생성할 수 없습니다.' };
@@ -128,6 +133,7 @@ export class UsersService {
       if (verification) {
         verification.user.verified = true;
         await this.users.save(verification.user);
+        await this.verification.delete(verification.id);
         return { ok: true };
       }
       return { ok: false, error: 'Verification not found.' };
