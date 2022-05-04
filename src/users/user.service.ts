@@ -31,7 +31,11 @@ export class UsersService {
     // check new user
     // create user & hash the password
     try {
-      const exists = await this.users.findOneBy({ email });
+      const exists = await this.users.findOne({
+        where: {
+          email,
+        },
+      });
       if (exists) {
         return { ok: false, error: '계정이 존재합니다.' };
       }
@@ -43,13 +47,13 @@ export class UsersService {
           user,
         }),
       );
-      this.mailService
-        .signup('hayanyoo.dev@gmail.com', verification.code)
-        .catch((e) => {
-          console.log(e);
-        });
+      await this.mailService.signup(
+        'hayanyoo.dev@gmail.com',
+        verification.code,
+      );
       return { ok: true };
     } catch (e) {
+      console.log(e);
       return { ok: false, error: '계정을 생성할 수 없습니다.' };
     }
   }
