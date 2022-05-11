@@ -117,27 +117,33 @@ export class UsersService {
     userId: number,
     { email, password }: EditProfileInput,
   ): Promise<EditProfileOutput> {
-    const user = await this.users.findOneBy({ id: userId });
-    if (email) {
-      user.email = email;
-      user.verified = false;
-      const verification = await this.verifications.save(
-        this.verifications.create({ user }),
-      );
+    try {
+      const user = await this.users.findOne({ where: { id: userId } });
+      if (email) {
+        user.email = email;
+        user.verified = false;
+        const verification = await this.verifications.save(
+          this.verifications.create({ user }),
+        );
 
-      this.mailService
-        .signup('hayanyoo.dev@gmail.com', verification.code)
-        .catch((e) => {
-          console.log(e);
-        });
+        await this.mailService.signup(
+          'hayanyoo.dev@gmail.com',
+          verification.code,
+        );
+      }
+      if (password) {
+        user.password = password;
+      }
+      await this.users.save(user);
+      return {
+        ok: true,
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: 'Verification not found.',
+      };
     }
-    if (password) {
-      user.password = password;
-    }
-    await this.users.save(user);
-    return {
-      ok: true,
-    };
   }
 
   async verifyEmail(code: string): Promise<VerifyEmailOutput> {
@@ -156,7 +162,7 @@ export class UsersService {
       }
       return { ok: false, error: 'Verification not found.' };
     } catch (error) {
-      return { ok: false, error };
+      return { ok: false, error: 'Could not verify email' };
     }
   }
 }
