@@ -156,7 +156,6 @@ describe('UserService', () => {
       };
       userRepository.findOne.mockResolvedValue(mockedUser);
       const result = await service.login(loginArgs);
-      console.log(result);
       expect(result).toEqual({
         ok: false,
         error: '비밀번호가 잘못되었습니다.',
@@ -170,7 +169,6 @@ describe('UserService', () => {
       };
       userRepository.findOne.mockResolvedValue(mockedUser);
       const result = await service.login(loginArgs);
-      console.log(result);
       expect(jwtService.sign).toHaveBeenCalledTimes(1);
     });
   });
