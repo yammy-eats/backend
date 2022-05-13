@@ -47,10 +47,10 @@ export class UsersService {
           user,
         }),
       );
-      await this.mailService.signup(
-        'hayanyoo.dev@gmail.com',
-        verification.code,
-      );
+      // await this.mailService.signup(
+      //   'hayanyoo.dev@gmail.com',
+      //   verification.code,
+      // );
       return { ok: true };
     } catch (e) {
       return { ok: false, error: '계정을 생성할 수 없습니다.' };
