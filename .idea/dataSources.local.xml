@@ -17,6 +17,7 @@
             <node kind="database" qname="yammy-eats">
               <node kind="schema" qname="public" />
             </node>
+            <node kind="database" qname="yammy-eats-test" />
           </node>
         </introspection-scope>
       </schema-mapping>
