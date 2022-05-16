@@ -269,6 +269,36 @@ describe('AppController (e2e)', () => {
         });
     });
   });
+  describe('editProfile', () => {
+    it('should change email', () => {
+      return request(app.getHttpServer())
+        .post(GRAPHQL_ENDPOINT)
+        .set('x-jwt', jwtToken)
+        .send({
+          query: `
+          mutation {
+            editProfile(input : {
+              email:"mico@email.com"
+            }) {
+              ok
+              error
+            }
+          }
+          `,
+        })
+        .expect(200)
+        .expect((res) => {
+          const {
+            body: {
+              data: {
+                editProfile: { ok, error },
+              },
+            },
+          } = res;
+          expect(ok).toBe(true);
+          expect(error).toBe(null);
+        });
+    });
+  });
   it.todo('verifyEmail');
-  it.todo('editProfile');
 });
