@@ -18,6 +18,9 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
 import configEmail from './mailer/mail.config';
 import * as path from 'path';
+import { Restaurant } from './restaurnats/entities/restaurant.entity';
+import { Category } from './restaurnats/entities/category.entity';
+import { RestaurantsModule } from './restaurnats/restaurnats.module';
 
 @Module({
   imports: [
@@ -54,9 +57,11 @@ import * as path from 'path';
       synchronize: process.env.NODE_ENV !== 'prod',
       logging:
         process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-      entities: [User, Verification],
+      entities: [User, Verification, Restaurant, Category],
     }),
+    AuthModule,
     UsersModule,
+    RestaurantsModule,
     JwtModule.forRoot({
       privateKey: process.env.PRIVATE_KEY,
     }),

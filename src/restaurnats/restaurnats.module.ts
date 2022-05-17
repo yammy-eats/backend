@@ -3,9 +3,10 @@ import { RestaurantsResolver } from './restaurants.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Restaurant } from './entities/restaurant.entity';
 import { RestaurantsService } from './restaurants.service';
+import { Category } from './entities/category.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Restaurant])], //TypeORM에서 Restaurant repository import
+  imports: [TypeOrmModule.forFeature([Restaurant, Category])], //TypeORM에서 Restaurant repository import
   providers: [RestaurantsResolver, RestaurantsService],
 })
-export class RestaurnatsModule {}
+export class RestaurantsModule {}
