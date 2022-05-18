@@ -1,5 +1,11 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  RelationId,
+} from 'typeorm';
 import { IsBoolean, IsOptional, IsString, Length } from 'class-validator';
 import { CoreEntity } from '../../common/entities/core.entity';
 import { Category } from './category.entity';
@@ -12,7 +18,7 @@ export class Restaurant extends CoreEntity {
   @Field(() => String) // GraphQL
   @Column() // TypeORM
   @IsString() // DTO의 입력값을 검증
-  @Length(5, 10)
+  @Length(2, 100)
   name: string;
 
   @Field((type) => String)
@@ -32,9 +38,15 @@ export class Restaurant extends CoreEntity {
   })
   category: Category;
 
+  @RelationId((restaurant: Restaurant) => restaurant.category)
+  categoryId: number;
+
   @Field((type) => User)
   @ManyToOne((type) => User, (user) => user.restaurants, {
     onDelete: 'CASCADE',
   })
   owner: User;
+
+  @RelationId((restaurant: Restaurant) => restaurant.owner)
+  ownerId: number;
 }

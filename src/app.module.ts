@@ -21,6 +21,7 @@ import * as path from 'path';
 import { Restaurant } from './restaurnats/entities/restaurant.entity';
 import { Category } from './restaurnats/entities/category.entity';
 import { RestaurantsModule } from './restaurnats/restaurnats.module';
+import { CategoryRepository } from './restaurnats/repositories/category.repository';
 
 @Module({
   imports: [

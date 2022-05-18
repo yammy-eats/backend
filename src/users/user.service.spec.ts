@@ -1,5 +1,5 @@
 import { UsersService } from './user.service';
-import { User } from './entities/user.entity';
+import { User, UserRole } from './entities/user.entity';
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Verification } from './entities/verification.entity';
@@ -71,7 +71,7 @@ describe('UserService', () => {
     const createAccountArgs = {
       email: '',
       password: '',
-      role: 0,
+      role: UserRole.Owner,
     };
     it('should fail if user exists', async () => {
       userRepository.findOne.mockResolvedValue({
