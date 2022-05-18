@@ -13,6 +13,10 @@ import {
 } from './dtos/edit-restaurant.dto';
 import { CategoryRepository } from './repositories/category.repository';
 import { Category } from './entities/category.entity';
+import {
+  DeleteRestaurantInput,
+  DeleteRestaurantOutput,
+} from './dtos/delete-restaurant.dto';
 
 @Injectable()
 export class RestaurantsService {
@@ -94,5 +98,37 @@ export class RestaurantsService {
     return {
       ok: true,
     };
+  }
+
+  async deleteRestaurant(
+    owner: User,
+    { restaurantId }: DeleteRestaurantInput,
+  ): Promise<DeleteRestaurantOutput> {
+    const restaurant = await this.restaurants.findOne(restaurantId);
+    try {
+      if (!restaurant) {
+        return {
+          ok: false,
+          error: '레스토랑이 존재하지 않습니다.',
+        };
+      }
+      if (owner.id !== restaurant.ownerId) {
+        return {
+          ok: false,
+          error: '다른 사람의 레스토랑은 지울 수 없습니다.',
+        };
+      }
+      console.log('will delete', restaurant);
+      //await this.restaurants.delete(restaurantId);
+      return {
+        ok: true,
+        error: '레스토랑이 삭제되었습니다.',
+      };
+    } catch (e) {
+      return {
+        ok: false,
+        error: '레스토랑을 삭제할 수 없습니다.',
+      };
+    }
   }
 }
