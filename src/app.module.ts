@@ -23,6 +23,8 @@ import { Category } from './restaurnats/entities/category.entity';
 import { RestaurantsModule } from './restaurnats/restaurnats.module';
 import { CategoryRepository } from './restaurnats/repositories/category.repository';
 import { Dish } from './restaurnats/entities/dish.entity';
+import { OrdersModule } from './orders/orders.module';
+import { Order } from './orders/entities/order.entity';
 
 @Module({
   imports: [
@@ -59,7 +61,7 @@ import { Dish } from './restaurnats/entities/dish.entity';
       synchronize: process.env.NODE_ENV !== 'prod',
       logging:
         process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-      entities: [User, Verification, Restaurant, Category, Dish],
+      entities: [User, Verification, Restaurant, Category, Dish, Order],
     }),
     AuthModule,
     UsersModule,
@@ -83,6 +85,7 @@ import { Dish } from './restaurnats/entities/dish.entity';
         };
       },
     }),
+    OrdersModule,
   ],
   controllers: [],
   providers: [],
