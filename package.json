@@ -39,6 +39,7 @@
     "form-data": "^4.0.0",
     "got": "^11.8.3",
     "graphql": "^15.8.0",
+    "graphql-subscriptions": "^2.0.0",
     "graphql-tools": "^8.2.8",
     "handlebars": "^4.7.7",
     "joi": "^17.6.0",
