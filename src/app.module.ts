@@ -26,6 +26,7 @@ import { Dish } from './restaurnats/entities/dish.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -81,6 +82,7 @@ import { OrderItem } from './orders/entities/order-item.entity';
     AuthModule,
     UsersModule,
     RestaurantsModule,
+    CommonModule,
     JwtModule.forRoot({
       privateKey: process.env.PRIVATE_KEY,
     }),
