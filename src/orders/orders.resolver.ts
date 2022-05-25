@@ -16,7 +16,6 @@ import {
   PUB_SUB,
 } from '../common/common.constants';
 import { Inject } from '@nestjs/common';
-import { filter } from 'rxjs';
 import { OrderUpdatesInput } from './dtos/order-updates.dto';
 import { TakeOrderInput, TakeOrderOutput } from './dtos/take-order.dto';
 

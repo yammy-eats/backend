@@ -7,7 +7,6 @@ import {
 } from './dto/create-payment.dto';
 import { Role } from '../auth/role.decorators';
 import { AuthUser } from '../auth/auth-user.decorator';
-import { UsersModule } from '../users/users.module';
 import { User } from '../users/entities/user.entity';
 import { GetPaymentsOutput } from './dto/get-payments.dto';
 

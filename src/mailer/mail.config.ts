@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 /*
   EMAIL_AUTH_EMAIL: 메일서버의 이메일

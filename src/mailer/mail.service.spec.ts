@@ -1,7 +1,5 @@
 import { MailService } from './mail.service';
 import { Test } from '@nestjs/testing';
-import { JwtService } from '../jwt/jwt.service';
-import { ConfigService } from '@nestjs/config';
 import { MailerService } from '@nestjs-modules/mailer';
 
 const mockMailerService = {

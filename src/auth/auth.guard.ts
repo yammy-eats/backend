@@ -2,7 +2,6 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Reflector } from '@nestjs/core';
 import { AllowedRoles } from './role.decorators';
-import { User } from '../users/entities/user.entity';
 import { JwtService } from '../jwt/jwt.service';
 import { UsersService } from '../users/user.service';
 
@@ -13,6 +12,7 @@ export class AuthGuard implements CanActivate {
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
   ) {}
+
   // CanActivate는 true를 return하면 request를 진행시키고, false를 리턴하면 request를 멈추게 함
   async canActivate(context: ExecutionContext) {
     const roles = this.reflector.get<AllowedRoles>(

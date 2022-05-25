@@ -7,4 +7,5 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe()); // 유효성 검사
   await app.listen(3000);
 }
+
 bootstrap();

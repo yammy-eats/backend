@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -11,7 +6,6 @@ import * as Joi from 'joi';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
-import { JwtMiddleware } from './jwt/jwt.middleware';
 import { AuthModule } from './auth/auth.module';
 import { Verification } from './users/entities/verification.entity';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -21,7 +15,6 @@ import * as path from 'path';
 import { Restaurant } from './restaurnats/entities/restaurant.entity';
 import { Category } from './restaurnats/entities/category.entity';
 import { RestaurantsModule } from './restaurnats/restaurnats.module';
-import { CategoryRepository } from './restaurnats/repositories/category.repository';
 import { Dish } from './restaurnats/entities/dish.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';

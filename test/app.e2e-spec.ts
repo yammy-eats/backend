@@ -1,12 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, Request } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { getConnection, Repository } from 'typeorm';
-import { MailService } from '../src/mailer/mail.service';
 import { User } from '../src/users/entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { query } from 'express';
 
 const GRAPHQL_ENDPOINT = '/graphql';
 const testUser = {

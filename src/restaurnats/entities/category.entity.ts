@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { IsBoolean, IsOptional, IsString, Length } from 'class-validator';
+import { Column, Entity, OneToMany } from 'typeorm';
+import { IsString, Length } from 'class-validator';
 import { CoreEntity } from '../../common/entities/core.entity';
 import { Restaurant } from './restaurant.entity';
 

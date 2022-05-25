@@ -1,6 +1,5 @@
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, RelationId } from 'typeorm';
-import exp from 'constants';
 import { CoreEntity } from '../../common/entities/core.entity';
 import { User } from '../../users/entities/user.entity';
 import { Restaurant } from '../../restaurnats/entities/restaurant.entity';

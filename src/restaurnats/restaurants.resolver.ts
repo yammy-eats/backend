@@ -1,11 +1,11 @@
 import {
-  Resolver,
-  Query,
   Args,
-  Mutation,
   Int,
-  ResolveField,
+  Mutation,
   Parent,
+  Query,
+  ResolveField,
+  Resolver,
 } from '@nestjs/graphql';
 import { Restaurant } from './entities/restaurant.entity';
 import {
@@ -14,8 +14,7 @@ import {
 } from './dtos/create-restaurant.dto';
 import { RestaurantsService } from './restaurants.service';
 import { AuthUser } from '../auth/auth-user.decorator';
-import { User, UserRole } from '../users/entities/user.entity';
-import { SetMetadata } from '@nestjs/common';
+import { User } from '../users/entities/user.entity';
 import { Role } from '../auth/role.decorators';
 import {
   EditRestaurantInput,
@@ -75,6 +74,7 @@ export class RestaurantsResolver {
       deleteRestaurantInput,
     );
   }
+
   @Query((returns) => RestaurantsOutput)
   restaurants(
     @Args('input') restaurantsInput: RestaurantsInput,

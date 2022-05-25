@@ -9,7 +9,6 @@ import {
   CreatePaymentOutput,
 } from './dto/create-payment.dto';
 import { GetPaymentsOutput } from './dto/get-payments.dto';
-import { Cron, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class PaymentsService {

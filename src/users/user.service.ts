@@ -4,8 +4,6 @@ import { User } from './entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { CreateAccountInput } from './dtos/create-account.dto';
 import { LoginInput } from './dtos/login-account.dto';
-import * as jwt from 'jsonwebtoken';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '../jwt/jwt.service';
 import { EditProfileInput, EditProfileOutput } from './dtos/edit-account.dto';
 import { Verification } from './entities/verification.entity';

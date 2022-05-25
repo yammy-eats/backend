@@ -9,6 +9,7 @@ export class JwtMiddleware implements NestMiddleware {
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
   ) {}
+
   async use(req: Request, res: Response, next: NextFunction) {
     if ('x-jwt' in req.headers) {
       const token = req.headers['x-jwt'];
