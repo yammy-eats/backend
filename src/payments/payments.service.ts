@@ -9,6 +9,7 @@ import {
   CreatePaymentOutput,
 } from './dto/create-payment.dto';
 import { GetPaymentsOutput } from './dto/get-payments.dto';
+import { Cron, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class PaymentsService {
@@ -44,6 +45,11 @@ export class PaymentsService {
           restaurant,
         }),
       );
+      restaurant.isPromoted = true;
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      restaurant.promotedUntil = date;
+      await this.restaurant.save(restaurant);
       return {
         ok: true,
       };
